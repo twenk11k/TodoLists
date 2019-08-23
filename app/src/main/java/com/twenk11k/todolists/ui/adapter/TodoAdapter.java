@@ -2,6 +2,7 @@ package com.twenk11k.todolists.ui.adapter;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         private ViewHolder(ItemTodoBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            this.binding.getRoot().setOnClickListener(this);
+            this.binding.checkBoxStatus.setOnClickListener(this);
+            this.binding.relativeItem.setOnClickListener(this);
+            this.binding.imageDeleteItem.setOnClickListener(this);
         }
 
         @Override

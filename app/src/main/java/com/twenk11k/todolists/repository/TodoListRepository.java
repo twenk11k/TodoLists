@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 
@@ -37,7 +36,6 @@ public class TodoListRepository {
         return todoDao.delete(data);
     }
 
-
     public Completable deleteTodoList(TodoList data) {
         return todoDao.delete(data);
     }
@@ -49,7 +47,6 @@ public class TodoListRepository {
     public Completable updateData(TodoItem data) {
         return todoDao.update(data);
     }
-
 
     public Flowable<List<TodoList>> loadUserWithTodoList(String email) {
         return todoDao.loadUserWithTodoList(email);

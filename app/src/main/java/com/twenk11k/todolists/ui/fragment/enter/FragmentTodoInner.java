@@ -3,7 +3,6 @@ package com.twenk11k.todolists.ui.fragment.enter;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -23,11 +21,9 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.common.StatusBarView;
@@ -40,16 +36,12 @@ import com.twenk11k.todolists.ui.adapter.TodoAdapter;
 import com.twenk11k.todolists.ui.dialog.CreateToDoItemDialog;
 import com.twenk11k.todolists.ui.viewmodel.TodoListViewModel;
 import com.twenk11k.todolists.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import dagger.android.support.AndroidSupportInjection;
-
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_EMAIL;
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_ID;
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_NAME;
@@ -70,10 +62,8 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
     private TodoListViewModel todoListViewModel;
     private Context context;
 
-
     @Inject
     ViewModelProvider.Factory viewModelFactory;
-
 
     public static FragmentTodoInner newInstance(String todoListName, int todoId, String todoListEmail) {
 
@@ -102,13 +92,13 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
             toDoListName = getArguments().getString(EXTRA_TODO_LIST_NAME);
             todoListEmail = getArguments().getString(EXTRA_TODO_LIST_EMAIL);
             todoListId = getArguments().getInt(EXTRA_TODO_LIST_ID);
-            binding.toolbar.setTitle(toDoListName);
+            toolbar.setTitle(toDoListName);
             if (todoListId >= 0) {
                 bringTodoItems();
             }
 
         } else {
-            binding.toolbar.setTitle(R.string.todo_list_inner_title);
+            toolbar.setTitle(R.string.todo_list_inner_title);
         }
 
         return binding.getRoot();
@@ -144,6 +134,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
 
 
     private void setViews() {
+
         fab = binding.fabInner;
         toolbar = binding.toolbar;
         recyclerView = binding.recyclerView;
