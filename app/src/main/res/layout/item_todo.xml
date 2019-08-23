@@ -1,81 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:id="@+id/relativeItem"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBox
-        android:id="@+id/checkBoxStatus"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_centerVertical="true"
-        android:tint="@color/colorLightGray" />
+    <data>
+        <variable
+            name="TodoItem"
+            type="com.twenk11k.todolists.roomdb.todolist.TodoItem" />
+    </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/relativeItem"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_toEndOf="@id/checkBoxStatus"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
-        <TextView
-            android:id="@+id/textDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:text="@string/description"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textColor="@color/colorLightGray"
-            android:textSize="15sp" />
-        <TextView
-            android:id="@+id/textDeadline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textColor="@color/colorLightGray"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/textCreateDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textColor="@color/colorLightGray"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-
-    <ImageView
-        android:layout_width="@dimen/_27sdp"
-        android:layout_height="@dimen/_27sdp"
-        android:id="@+id/imageDeleteItem"
-        android:layout_centerVertical="true"
-        android:src="@drawable/baseline_delete_white_24"
-        android:tint="@color/colorLightGray"
         android:background="?android:attr/selectableItemBackground"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        />
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBoxStatus"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:tint="@color/colorLightGray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@id/checkBoxStatus"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/name"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/description"
+                android:textColor="@color/colorLightGray"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textDeadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorLightGray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textCreateDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorLightGray"
+                android:textSize="15sp" />
+        </LinearLayout>
 
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageDeleteItem"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/baseline_delete_white_24"
+            android:tint="@color/colorLightGray" />
+
+
+    </RelativeLayout>
+</layout>

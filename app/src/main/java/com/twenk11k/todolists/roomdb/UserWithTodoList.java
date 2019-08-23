@@ -3,7 +3,7 @@ package com.twenk11k.todolists.roomdb;
 
 import androidx.room.Embedded;
 import androidx.room.Relation;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
+import com.twenk11k.todolists.roomdb.todolist.TodoList;
 import com.twenk11k.todolists.roomdb.user.User;
 import java.util.List;
 

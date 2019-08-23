@@ -1,4 +1,4 @@
-package com.twenk11k.todolists.roomdb.todolist.table;
+package com.twenk11k.todolists.roomdb.todolist;
 
 
 import androidx.room.ColumnInfo;

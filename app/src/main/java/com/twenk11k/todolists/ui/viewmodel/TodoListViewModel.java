@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.twenk11k.todolists.repository.TodoListRepository;
 import com.twenk11k.todolists.repository.UserRepository;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoList;
 import com.twenk11k.todolists.roomdb.user.User;
 
 import java.util.List;

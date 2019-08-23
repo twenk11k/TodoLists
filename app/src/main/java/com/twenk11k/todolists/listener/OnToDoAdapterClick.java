@@ -1,7 +1,7 @@
 package com.twenk11k.todolists.listener;
 
 
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 
 
 public interface OnToDoAdapterClick {

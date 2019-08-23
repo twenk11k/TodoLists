@@ -32,10 +32,10 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="todo_list_inner_title">ToDo List</string>
-    <string name="created_at">Created at</string>
+    <string name="created_at">Created at&#160;</string>
     <string name="copyright">© 2019 twenk11k</string>
     <string name="logout">Logout</string>
-    <string name="deadlineText">Deadline:</string>
+    <string name="deadlineText">Deadline:&#160;</string>
     <string name="logged_out">Logged out from your account.</string>
     <string name="error_name">You need to enter a name</string>
     <string name="error_description">You need to enter a description</string>

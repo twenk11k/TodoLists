@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import com.twenk11k.todolists.ui.activity.EnterActivity;
 import com.twenk11k.todolists.ui.fragment.enter.FragmentTodoInner;
 import com.twenk11k.todolists.ui.fragment.enter.FragmentTodoList;

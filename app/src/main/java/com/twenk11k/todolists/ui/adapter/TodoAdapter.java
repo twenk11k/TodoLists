@@ -5,27 +5,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.twenk11k.todolists.R;
+import com.twenk11k.todolists.databinding.ItemTodoBinding;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoAdapterClick;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import com.twenk11k.todolists.ui.dialog.DeleteToDoListDialog;
 import java.util.List;
 
 
-public class TodoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     private Context context;
     private List<TodoItem> toDoItemList;
     private OnToDoAdapterClick onToDoAdapterClick;
 
-    public TodoAdapter(Context context, List<TodoItem> toDoItemList,OnToDoAdapterClick onToDoAdapterClick){
+    public TodoAdapter(Context context, List<TodoItem> toDoItemList, OnToDoAdapterClick onToDoAdapterClick) {
         this.context = context;
         this.toDoItemList = toDoItemList;
         this.onToDoAdapterClick = onToDoAdapterClick;
@@ -33,33 +31,27 @@ public class TodoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder viewHolder;
-
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_todo, parent, false);
-        viewHolder = new ViewHolder(view);
-        return viewHolder;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ItemTodoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_todo, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        ViewHolder viewHolder = (ViewHolder) holder;
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TodoItem todoItem = toDoItemList.get(position);
         String name = todoItem.getName();
         String description = todoItem.getDescription();
         String deadline = todoItem.getDeadline();
         String createDate = todoItem.getCreateDate();
         int checkBoxStatus = todoItem.getStatus();
-        viewHolder.textName.setText(name);
-        viewHolder.textDescription.setText(description);
-        viewHolder.textDeadline.setText(context.getString(R.string.deadlineText)+" "+deadline);
-        viewHolder.textCreateDate.setText(context.getString(R.string.created_at)+" "+createDate);
-        if(checkBoxStatus == 1){
-            viewHolder.checkBoxStatus.setChecked(true);
+        holder.binding.textName.setText(name);
+        holder.binding.textDescription.setText(description);
+        holder.binding.textDeadline.setText(context.getString(R.string.deadlineText).concat(deadline));
+        holder.binding.textCreateDate.setText(context.getString(R.string.created_at).concat(createDate));
+        if (checkBoxStatus == 1) {
+            holder.binding.checkBoxStatus.setChecked(true);
         } else {
-            viewHolder.checkBoxStatus.setChecked(false);
+            holder.binding.checkBoxStatus.setChecked(false);
         }
     }
 
@@ -68,32 +60,20 @@ public class TodoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return toDoItemList.size();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView textName,textDescription,textDeadline,textCreateDate;
-        private ImageView imageDelete;
-        private CheckBox checkBoxStatus;
-        private RelativeLayout relativeItem;
+        private ItemTodoBinding binding;
 
-        private ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            textName = itemView.findViewById(R.id.textName);
-            textDescription = itemView.findViewById(R.id.textDescription);
-            textDeadline = itemView.findViewById(R.id.textDeadline);
-            checkBoxStatus = itemView.findViewById(R.id.checkBoxStatus);
-            relativeItem = itemView.findViewById(R.id.relativeItem);
-            textCreateDate = itemView.findViewById(R.id.textCreateDate);
-            imageDelete = itemView.findViewById(R.id.imageDeleteItem);
-            imageDelete.setOnClickListener(this);
-            relativeItem.setOnClickListener(this);
-            checkBoxStatus.setOnClickListener(this);
+        private ViewHolder(ItemTodoBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.binding.getRoot().setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             TodoItem todoItem = toDoItemList.get(getAdapterPosition());
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.imageDeleteItem:
                     DeleteToDoListDialog deleteToDoListDialog = new DeleteToDoListDialog(context, todoItem.getName(), new OnDeleteToDoListDialogClick() {
                         @Override
@@ -107,10 +87,10 @@ public class TodoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     deleteToDoListDialog.show();
                     break;
                 case R.id.relativeItem:
-                    checkBoxStatus.performClick();
+                    binding.checkBoxStatus.performClick();
                     break;
                 case R.id.checkBoxStatus:
-                    if(checkBoxStatus.isChecked()){
+                    if (binding.checkBoxStatus.isChecked()) {
                         todoItem.setStatus(1);
                     } else {
                         todoItem.setStatus(0);

@@ -7,8 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
+
 import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;

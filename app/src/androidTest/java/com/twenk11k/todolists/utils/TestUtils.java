@@ -1,7 +1,7 @@
 package com.twenk11k.todolists.utils;
 
 
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -35,7 +35,7 @@ import com.twenk11k.todolists.databinding.FragmentTodoListInnerBinding;
 import com.twenk11k.todolists.di.injector.Injectable;
 import com.twenk11k.todolists.listener.OnCreateToDoItemDialogClick;
 import com.twenk11k.todolists.listener.OnToDoAdapterClick;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import com.twenk11k.todolists.ui.adapter.TodoAdapter;
 import com.twenk11k.todolists.ui.dialog.CreateToDoItemDialog;
 import com.twenk11k.todolists.ui.viewmodel.TodoListViewModel;

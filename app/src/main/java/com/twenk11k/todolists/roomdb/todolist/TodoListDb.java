@@ -5,8 +5,6 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
 
 
 @Database(entities = {TodoList.class, TodoItem.class}, version = 13, exportSchema = false)

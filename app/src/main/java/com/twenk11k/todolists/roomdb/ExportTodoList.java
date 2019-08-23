@@ -3,7 +3,7 @@ package com.twenk11k.todolists.roomdb;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import java.util.ArrayList;
 import java.util.List;
 

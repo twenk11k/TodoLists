@@ -2,8 +2,8 @@ package com.twenk11k.todolists.repository;
 
 
 import com.twenk11k.todolists.roomdb.todolist.TodoDao;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoItem;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
+import com.twenk11k.todolists.roomdb.todolist.TodoItem;
+import com.twenk11k.todolists.roomdb.todolist.TodoList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;

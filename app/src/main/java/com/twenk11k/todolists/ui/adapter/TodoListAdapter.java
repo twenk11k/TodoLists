@@ -14,7 +14,7 @@ import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnExportToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoListAdapterClick;
-import com.twenk11k.todolists.roomdb.todolist.table.TodoList;
+import com.twenk11k.todolists.roomdb.todolist.TodoList;
 import com.twenk11k.todolists.ui.dialog.DeleteToDoListDialog;
 import com.twenk11k.todolists.ui.dialog.ExportToDoListDialog;
 import java.util.List;
