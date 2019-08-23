@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.twenk11k.todolists.R;
+import com.twenk11k.todolists.databinding.ItemTodoListBinding;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnExportToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoListAdapterClick;
@@ -20,12 +22,12 @@ import com.twenk11k.todolists.ui.dialog.ExportToDoListDialog;
 import java.util.List;
 
 
-public class TodoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHolder> {
 
     private Context context;
     private List<TodoList> toDoLists;
-
     private OnToDoListAdapterClick onToDoListAdapterClick;
+
     public TodoListAdapter(Context context, List<TodoList> toDoLists, OnToDoListAdapterClick onToDoListAdapterClick){
         this.context = context;
         this.toDoLists = toDoLists;
@@ -34,21 +36,18 @@ public class TodoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder viewHolder;
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_todo_list, parent, false);
-        viewHolder = new ViewHolder(view);
-        return viewHolder;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ItemTodoListBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.item_todo_list,parent,false);
+        return new ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        ViewHolder viewHolder = (ViewHolder) holder;
         String name = toDoLists.get(position).getName();
         String createDate = toDoLists.get(position).getCreateDate();
-        viewHolder.textName.setText(name);
-        viewHolder.textCreateDate.setText(context.getString(R.string.created_at)+" "+createDate);
+        holder.binding.textName.setText(name);
+        holder.binding.textCreateDate.setText(context.getString(R.string.created_at)+" "+createDate);
 
     }
 
@@ -57,22 +56,16 @@ public class TodoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return toDoLists.size();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView textName,textCreateDate;
-        private ImageView imageDelete,imageExport;
-        private RelativeLayout relativeList;
+        private ItemTodoListBinding binding;
 
-        private ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textName = itemView.findViewById(R.id.textName);
-            textCreateDate = itemView.findViewById(R.id.textCreateDate);
-            imageDelete = itemView.findViewById(R.id.imageDeleteList);
-            imageExport = itemView.findViewById(R.id.imageExport);
-            relativeList = itemView.findViewById(R.id.relativeList);
-            imageDelete.setOnClickListener(this);
-            imageExport.setOnClickListener(this);
-            relativeList.setOnClickListener(this);
+        private ViewHolder(ItemTodoListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            binding.imageDeleteList.setOnClickListener(this);
+            binding.imageExport.setOnClickListener(this);
+            binding.relativeList.setOnClickListener(this);
         }
 
         @Override

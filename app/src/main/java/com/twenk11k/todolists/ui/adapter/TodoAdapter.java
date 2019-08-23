@@ -2,7 +2,6 @@ package com.twenk11k.todolists.ui.adapter;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +38,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         TodoItem todoItem = toDoItemList.get(position);
         String name = todoItem.getName();
         String description = todoItem.getDescription();
@@ -54,6 +54,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         } else {
             holder.binding.checkBoxStatus.setChecked(false);
         }
+
     }
 
     @Override
