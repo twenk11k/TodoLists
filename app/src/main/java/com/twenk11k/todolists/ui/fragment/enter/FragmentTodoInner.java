@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -260,15 +261,14 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
     }
 
     private void orderItemsByStatus() {
-        for (int i = 0; i < todoItems.size(); i++) {
-            if (i + 1 <= todoItems.size() - 1) {
-                if (todoItems.get(i).getStatus() < todoItems.get(i + 1).getStatus()) {
-                    TodoItem tempItem = todoItems.get(i);
-                    todoItems.set(i, todoItems.get(i + 1));
-                    todoItems.set(i + 1, tempItem);
-                }
+
+        Collections.sort(todoItems, new Comparator<TodoItem>() {
+            @Override
+            public int compare(TodoItem lhs, TodoItem rhs) {
+                return rhs.getStatus() - lhs.getStatus();
             }
-        }
+        });
+
         todoAdapter.notifyDataSetChanged();
     }
 
