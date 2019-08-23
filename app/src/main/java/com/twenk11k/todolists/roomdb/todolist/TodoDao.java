@@ -36,7 +36,7 @@ public interface TodoDao {
     Flowable<List<TodoList>> loadUserWithTodoList(String email);
 
     @Query("SELECT * FROM TodoItemTable WHERE todoListId = :todoListId AND todoListEmail = :todoListEmail")
-    Flowable<List<TodoItem>> loadTodoItems(int todoListId, String todoListEmail);
+    Single<List<TodoItem>> loadTodoItems(int todoListId, String todoListEmail);
 
     @Insert
     Completable insert(TodoItem data);

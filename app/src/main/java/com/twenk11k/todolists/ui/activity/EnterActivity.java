@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -58,8 +59,7 @@ public class EnterActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_enter);
         headerBinding = NavigationViewHeaderBinding.bind(binding.navigationView.getHeaderView(0));
-        userViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel.class);
-
+        userViewModel = new ViewModelProvider(this, viewModelFactory).get(UserViewModel.class);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userName = extras.getString("userName");
@@ -165,7 +165,7 @@ public class EnterActivity extends BaseActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = FragmentTodoList.newInstance(userEmail, userId);
+        Fragment fragment = FragmentTodoList.newInstance(userEmail);
 
         fragmentTransaction.replace(R.id.fragment, fragment);
         fragmentTransaction.addToBackStack(null);
@@ -174,10 +174,6 @@ public class EnterActivity extends BaseActivity {
     }
 
 
-    public void requestExternalStoragePermission() {
-        ActivityCompat.requestPermissions(EnterActivity.this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -187,20 +183,18 @@ public class EnterActivity extends BaseActivity {
             Utils.setPermissionExternalEnabled(true);
 
             if (getSupportFragmentManager().findFragmentById(R.id.fragment) instanceof FragmentTodoList) {
-                ((FragmentTodoList) getSupportFragmentManager().findFragmentById(R.id.fragment)).exportListLocalStorage();
+                    ((FragmentTodoList) getSupportFragmentManager().findFragmentById(R.id.fragment)).requestExportList();
             }
 
         } else {
 
             Utils.setPermissionExternalEnabled(false);
-
             if (ActivityCompat.shouldShowRequestPermissionRationale(EnterActivity.this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_permission), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_permission), Toast.LENGTH_SHORT).show();
             }
-
 
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

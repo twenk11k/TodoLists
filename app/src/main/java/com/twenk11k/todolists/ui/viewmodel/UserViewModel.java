@@ -89,7 +89,7 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     private void onLoadUserError(Throwable t) {
-        Log.d("UserViewModel", t.getMessage());
+        Log.d(getClass().getName(), t.getMessage());
         userLiveData.setValue(null);
     }
 
@@ -123,7 +123,7 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     private void onLoadAutoLoginInfoError(Throwable t) {
-        Log.d("UserViewModel",t.getMessage());
+        Log.d(getClass().getName(),t.getMessage());
         autoLoginInfoLiveData.setValue(null);
     }
 

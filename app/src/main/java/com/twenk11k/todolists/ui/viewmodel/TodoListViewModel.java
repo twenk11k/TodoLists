@@ -18,6 +18,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -37,7 +41,7 @@ public class TodoListViewModel extends AndroidViewModel {
     private MutableLiveData<List<TodoItem>> todoItemLiveData;
 
     @Inject
-    public TodoListViewModel(Application application){
+    public TodoListViewModel(Application application) {
 
         super(application);
         compositeDisposable = new CompositeDisposable();
@@ -97,7 +101,7 @@ public class TodoListViewModel extends AndroidViewModel {
 
         compositeDisposable.add(deleteTodoList);
 
-        Disposable deleteItemsByTodoListId = todoListRepository.deleteItemsByTodoListIdAndEmail(data.getId(),data.getEmail())
+        Disposable deleteItemsByTodoListId = todoListRepository.deleteItemsByTodoListIdAndEmail(data.getId(), data.getEmail())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
@@ -107,52 +111,70 @@ public class TodoListViewModel extends AndroidViewModel {
     }
 
     public void update(TodoItem data) {
+
         Disposable updateTodoItem = todoListRepository.updateData(data)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
+
         compositeDisposable.add(updateTodoItem);
+
     }
 
 
-    public void loadTodoItems(int todoListId,String todoListEmail){
+    public Single<List<TodoItem>> loadTodoItemsSingle(int todoListId, String todoListEmail) {
 
-        Disposable todoItems = todoListRepository.loadTodoItems(todoListId,todoListEmail)
+        return todoListRepository.loadTodoItems(todoListId, todoListEmail);
+
+    }
+
+    public void loadTodoItems(int todoListId, String todoListEmail) {
+
+        Disposable loadTodoItemsDisposable = todoListRepository.loadTodoItems(todoListId, todoListEmail)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onLoadTodoItemFetch,this::onLoadTodoItemError);
+                .subscribe(this::onLoadTodoItemFetch, this::onLoadTodoItemError);
 
-        compositeDisposable.add(todoItems);
+        compositeDisposable.add(loadTodoItemsDisposable);
+
 
     }
+
 
     private void onLoadTodoItemFetch(List<TodoItem> todoItems) {
         todoItemLiveData.setValue(todoItems);
     }
 
     private void onLoadTodoItemError(Throwable t) {
-        Log.d(getClass().getName(),"onLoadTodoItemError: "+t.getMessage());
+
+        Log.d(getClass().getName(), "onLoadTodoItemError: " + t.getMessage());
         todoItemLiveData.setValue(null);
+
     }
 
-    public LiveData<List<TodoList>> loadUserWithTodoList(String email){
+    public LiveData<List<TodoList>> loadUserWithTodoList(String email) {
 
         return LiveDataReactiveStreams.fromPublisher(todoListRepository.loadUserWithTodoList(email));
 
     }
 
 
-    public void loadAutoLoginInfo(){
+    public void loadAutoLoginInfo() {
+
         Disposable autoLoginDisposable = userRepository.getAutoLoginInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onLoadAutoLoginInfoFetched, this::onLoadAutoLoginInfoError);
+
         compositeDisposable.add(autoLoginDisposable);
+
     }
 
     private void onLoadAutoLoginInfoError(Throwable t) {
-        Log.d(getClass().getName(),"onLoadAutoLoginInfoError: "+t.getMessage());
+
+        Log.d(getClass().getName(), "onLoadAutoLoginInfoError: " + t.getMessage());
         autoLoginInfoLiveData.setValue(null);
+
     }
 
     private void onLoadAutoLoginInfoFetched(User user) {

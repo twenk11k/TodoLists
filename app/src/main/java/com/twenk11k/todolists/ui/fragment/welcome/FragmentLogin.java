@@ -52,7 +52,7 @@ public class FragmentLogin extends Fragment implements Injectable {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
-        userViewModel = ViewModelProviders.of(this,viewModelFactory).get(UserViewModel.class);
+        userViewModel = new ViewModelProvider(this,viewModelFactory).get(UserViewModel.class);
         binding.toolbar.setTitle(R.string.login_title);
         setViews();
         return binding.getRoot();

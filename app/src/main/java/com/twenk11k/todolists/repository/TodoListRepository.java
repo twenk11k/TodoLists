@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
 
 
 @Singleton
@@ -53,7 +55,7 @@ public class TodoListRepository {
         return todoDao.loadUserWithTodoList(email);
     }
 
-    public Flowable<List<TodoItem>> loadTodoItems(int todoListId,String todoListEmail) {
+    public Single<List<TodoItem>> loadTodoItems(int todoListId, String todoListEmail) {
         return todoDao.loadTodoItems(todoListId,todoListEmail);
     }
 

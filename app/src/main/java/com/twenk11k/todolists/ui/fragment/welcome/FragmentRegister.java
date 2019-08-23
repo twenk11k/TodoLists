@@ -52,7 +52,7 @@ public class FragmentRegister extends Fragment implements Injectable {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false);
         binding.toolbar.setTitle(R.string.register_title);
 
-        userViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel.class);
+        userViewModel = new ViewModelProvider(this, viewModelFactory).get(UserViewModel.class);
 
         setViews();
 

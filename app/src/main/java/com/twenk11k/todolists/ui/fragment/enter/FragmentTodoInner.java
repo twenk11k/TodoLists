@@ -94,7 +94,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo_list_inner, container, false);
 
-        todoListViewModel = ViewModelProviders.of(this, viewModelFactory).get(TodoListViewModel.class);
+        todoListViewModel = new ViewModelProvider(this, viewModelFactory).get(TodoListViewModel.class);
 
         setViews();
 
@@ -102,7 +102,6 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
             toDoListName = getArguments().getString(EXTRA_TODO_LIST_NAME);
             todoListEmail = getArguments().getString(EXTRA_TODO_LIST_EMAIL);
             todoListId = getArguments().getInt(EXTRA_TODO_LIST_ID);
-            Log.d("tololistid", String.valueOf(todoListId));
             binding.toolbar.setTitle(toDoListName);
             if (todoListId >= 0) {
                 bringTodoItems();
@@ -130,11 +129,9 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
 
             pBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-            if (todoItemList != null) {
-                todoItems.clear();
-                todoItems.addAll(todoItemList);
-                todoAdapter.notifyDataSetChanged();
-            }
+            todoItems.clear();
+            todoItems.addAll(todoItemList);
+            todoAdapter.notifyDataSetChanged();
 
         } else {
 
