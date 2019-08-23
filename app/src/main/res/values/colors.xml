@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#00a788</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#808080</color>
+    <color name="colorLightGreen">#869c98</color>
+    <color name="md_dark_dividers">#1FFFFFFF</color>
+    <color name="color_divider">#565960</color>
+    <color name="colorCardViewDark">#44474f</color>
+    <color name="colorLoginButton">#4d9ad4</color>
+    <color name="colorDialogBackground">#3E80B4</color>
+    <color name="colorLightGray">#bfbfbf</color>
+    <color name="colorToolbar">#28496b</color>
+
 </resources>
