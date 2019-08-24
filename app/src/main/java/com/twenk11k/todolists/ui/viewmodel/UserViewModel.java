@@ -11,6 +11,7 @@ import com.twenk11k.todolists.roomdb.user.User;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -83,6 +84,11 @@ public class UserViewModel extends AndroidViewModel {
         compositeDisposable.add(userListDisposable);
 
     }
+
+    public Single<User> findUserByEmailAndPassword(User user){
+        return userRepository.findUserByEmailAndPassword(user.getEmail(),user.getPassword());
+    }
+
 
     private void onLoadUserFetched(User user) {
         userLiveData.setValue(user);

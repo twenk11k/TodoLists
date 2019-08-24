@@ -58,6 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -344,15 +345,25 @@ public class FragmentTodoList extends Fragment implements OnToDoListAdapterClick
     public void requestExportList() {
 
         if (tempTodoList != null) {
-            todoListViewModel.getTodoItemLiveData().observe(this, this::exportList);
 
-            disposable = todoListViewModel.loadTodoItemsSingle(tempTodoList.getId(), tempTodoList.getEmail())
+            todoListViewModel.loadTodoItemsSingle(tempTodoList.getId(), tempTodoList.getEmail())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<List<TodoItem>>() {
+                    .subscribe(new SingleObserver<List<TodoItem>>() {
                         @Override
-                        public void accept(List<TodoItem> todoItems) throws Exception {
+                        public void onSubscribe(Disposable d) {
+                            disposable = d;
+                        }
+
+                        @Override
+                        public void onSuccess(List<TodoItem> todoItems) {
                             exportList(todoItems);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Toast.makeText(context,getString(R.string.error_occurred),Toast.LENGTH_SHORT).show();
+                            Log.d(getClass().getName(),e.getMessage());
                         }
                     });
 

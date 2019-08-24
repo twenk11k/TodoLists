@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,11 @@ import com.twenk11k.todolists.utils.Utils;
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class FragmentLogin extends Fragment implements Injectable {
 
@@ -43,6 +49,7 @@ public class FragmentLogin extends Fragment implements Injectable {
     private boolean isApproved = true;
     private int onChangedCalled = 0;
     private Context context;
+    private Disposable disposable;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -98,6 +105,8 @@ public class FragmentLogin extends Fragment implements Injectable {
         });
 
     }
+
+
     private void onLoginButtonClick() {
         isApproved = true;
         onChangedCalled = 0;
@@ -127,7 +136,27 @@ public class FragmentLogin extends Fragment implements Injectable {
             data.setPassword(strPassword);
             data.setAutoLogin(1);
             userViewModel.checkIfUserExist(data);
-            userViewModel.getUserLiveData().observe(this,this::handleUser);
+
+            userViewModel.findUserByEmailAndPassword(data)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new SingleObserver<User>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            disposable = d;
+                        }
+
+                        @Override
+                        public void onSuccess(User user) {
+                            handleUser(user);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Toast.makeText(context,getString(R.string.error_occurred),Toast.LENGTH_SHORT).show();
+                            Log.d(getClass().getName(),e.getMessage());
+                        }
+                    });
 
         }
     }
@@ -152,5 +181,11 @@ public class FragmentLogin extends Fragment implements Injectable {
         getActivity().finish();
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(disposable != null && !disposable.isDisposed()){
+            disposable.dispose();
+        }
+    }
 }
