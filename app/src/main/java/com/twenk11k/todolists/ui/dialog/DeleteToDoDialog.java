@@ -13,24 +13,30 @@ import androidx.annotation.NonNull;
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 
-public class DeleteToDoListDialog extends Dialog {
+public class DeleteToDoDialog extends Dialog {
 
     private OnDeleteToDoListDialogClick onDeleteToDoListDialogClick;
     private String listName;
     private TextView textListName;
     private Button btnNo, btnYes;
+    private boolean isTodoList;
 
-    public DeleteToDoListDialog(@NonNull Context context, String listName, OnDeleteToDoListDialogClick onDeleteToDoListDialogClick) {
+    public DeleteToDoDialog(@NonNull Context context, String listName, OnDeleteToDoListDialogClick onDeleteToDoListDialogClick,boolean isTodoList) {
         super(context);
         this.onDeleteToDoListDialogClick = onDeleteToDoListDialogClick;
         this.listName = listName;
+        this.isTodoList = isTodoList;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialog_delete_todo_list);
+        if(isTodoList)
+            setContentView(R.layout.dialog_delete_todo_list);
+        else
+            setContentView(R.layout.dialog_delete_todo_item);
+
         setViews();
     }
 

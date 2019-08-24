@@ -2,6 +2,7 @@ package com.twenk11k.todolists.roomdb.user;
 
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -34,12 +35,15 @@ public interface UserDao {
 
 
     // Test
-    @Query("SELECT * FROM UserTable WHERE email = :email")
-    List<User> findUsersByEmailTest(String email);
+    @Query("SELECT * FROM UserTable WHERE email = :email LIMIT 1")
+    User findUserByEmailTest(String email);
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTest(final User data);
+
+    @Delete()
+    void deleteTest(final User data);
 
 
 

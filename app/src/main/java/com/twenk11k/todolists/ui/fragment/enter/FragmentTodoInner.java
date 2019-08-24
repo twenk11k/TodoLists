@@ -202,32 +202,36 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
             case android.R.id.home:
                 getActivity().onBackPressed();
                 return true;
-            case R.id.menu_filter_by_status:
-                filterItemsByStatus();
-                break;
-            case R.id.menu_filter_by_expire:
-                break;
-            case R.id.menu_filter_by_name:
-                break;
-            case R.id.menu_order_by_createdate:
-                orderItemsByCreateDate();
-                break;
-            case R.id.menu_order_by_deadline:
-                orderItemsByDeadline();
-                break;
             case R.id.menu_order_by_name:
                 orderItemsByName();
                 break;
             case R.id.menu_order_by_status:
                 orderItemsByStatus();
                 break;
+            case R.id.menu_order_by_deadline:
+                orderItemsByDeadline();
+                break;
+            case R.id.menu_order_by_createdate:
+                orderItemsByCreateDate();
+                break;
+            case R.id.menu_order_by_expired:
+                orderItemsByExpired();
+                break;
+
+
+
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void filterItemsByStatus() {
-
-
+    private void orderItemsByExpired() {
+        Collections.sort(todoItems, new Comparator<TodoItem>() {
+            @Override
+            public int compare(TodoItem o1, TodoItem o2) {
+                return Utils.getCurrentDate().compareTo(o1.getDeadline()) + Utils.getCurrentDate().compareTo(o2.getDeadline());
+            }
+        });
+        todoAdapter.notifyDataSetChanged();
     }
 
     private void orderItemsByDeadline() {

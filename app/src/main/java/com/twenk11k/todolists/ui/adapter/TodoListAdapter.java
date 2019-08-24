@@ -5,9 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +15,7 @@ import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnExportToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoListAdapterClick;
 import com.twenk11k.todolists.roomdb.todolist.TodoList;
-import com.twenk11k.todolists.ui.dialog.DeleteToDoListDialog;
+import com.twenk11k.todolists.ui.dialog.DeleteToDoDialog;
 import com.twenk11k.todolists.ui.dialog.ExportToDoListDialog;
 import java.util.List;
 
@@ -73,7 +71,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
             TodoList toDoList = toDoLists.get(getAdapterPosition());
             switch (v.getId()){
                 case R.id.imageDeleteList:
-                    DeleteToDoListDialog deleteToDoListDialog = new DeleteToDoListDialog(context,toDoList.getName(), new OnDeleteToDoListDialogClick() {
+                    DeleteToDoDialog deleteToDoDialog = new DeleteToDoDialog(context,toDoList.getName(), new OnDeleteToDoListDialogClick() {
                         @Override
                         public void onDeleteBtnClick() {
                             toDoLists.remove(getAdapterPosition());
@@ -81,8 +79,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                             notifyItemRangeChanged(getAdapterPosition(), getItemCount());
                             onToDoListAdapterClick.onAdapterClickDelete(toDoList);
                         }
-                    });
-                    deleteToDoListDialog.show();
+                    },true);
+                    deleteToDoDialog.show();
                     break;
                 case R.id.imageExport:
                     ExportToDoListDialog exportToDoListDialog = new ExportToDoListDialog(context,toDoList.getName(), new OnExportToDoListDialogClick() {

@@ -5,46 +5,27 @@
     tools:context=".ui.activity.EnterActivity" >
 
     <item
-        android:id="@+id/menu_filter_by"
-        app:showAsAction="ifRoom"
-        android:orderInCategory="1"
-        android:icon="@drawable/baseline_filter_list_white_24"
-        android:title="@string/menu_filter_by"
-        >
-
-        <menu>
-            <item
-                android:id="@+id/menu_filter_by_status"
-                android:title="@string/status"/>
-            <item
-                android:id="@+id/menu_filter_by_expire"
-                android:title="@string/expire"/>
-            <item
-                android:id="@+id/menu_filter_by_name"
-                android:title="@string/name"/>
-        </menu>
-    </item>
-
-
-    <item
         android:id="@+id/menu_order_by"
         app:showAsAction="ifRoom"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         android:icon="@drawable/baseline_sort_white_24"
         android:title="@string/menu_order_by">
         <menu>
-            <item
-                android:id="@+id/menu_order_by_createdate"
-                android:title="@string/createdate"/>
-            <item
-                android:id="@+id/menu_order_by_deadline"
-                android:title="@string/deadline"/>
             <item
                 android:id="@+id/menu_order_by_name"
                 android:title="@string/name"/>
             <item
                 android:id="@+id/menu_order_by_status"
                 android:title="@string/status"/>
+            <item
+                android:id="@+id/menu_order_by_deadline"
+                android:title="@string/deadline"/>
+            <item
+                android:id="@+id/menu_order_by_createdate"
+                android:title="@string/createdate"/>
+            <item
+                android:id="@+id/menu_order_by_expired"
+                android:title="@string/expired"/>
         </menu>
     </item>
 

@@ -13,7 +13,7 @@ import com.twenk11k.todolists.databinding.ItemTodoBinding;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoAdapterClick;
 import com.twenk11k.todolists.roomdb.todolist.TodoItem;
-import com.twenk11k.todolists.ui.dialog.DeleteToDoListDialog;
+import com.twenk11k.todolists.ui.dialog.DeleteToDoDialog;
 import java.util.List;
 
 
@@ -79,7 +79,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             TodoItem todoItem = toDoItemList.get(getAdapterPosition());
             switch (v.getId()) {
                 case R.id.imageDeleteItem:
-                    DeleteToDoListDialog deleteToDoListDialog = new DeleteToDoListDialog(context, todoItem.getName(), new OnDeleteToDoListDialogClick() {
+                    DeleteToDoDialog deleteToDoDialog = new DeleteToDoDialog(context, todoItem.getName(), new OnDeleteToDoListDialogClick() {
                         @Override
                         public void onDeleteBtnClick() {
                             onToDoAdapterClick.onAdapterClickDelete(toDoItemList.get(getAdapterPosition()));
@@ -87,8 +87,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
                             notifyItemRemoved(getAdapterPosition());
                             notifyItemRangeChanged(getAdapterPosition(), getItemCount());
                         }
-                    });
-                    deleteToDoListDialog.show();
+                    },false);
+                    deleteToDoDialog.show();
                     break;
                 case R.id.relativeItem:
                     binding.checkBoxStatus.performClick();
