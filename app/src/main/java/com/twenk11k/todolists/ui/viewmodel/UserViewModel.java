@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.twenk11k.todolists.repository.UserRepository;
 import com.twenk11k.todolists.roomdb.user.User;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.Single;
@@ -21,7 +23,7 @@ public class UserViewModel extends AndroidViewModel {
 
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<User> userLiveData;
-    private MutableLiveData<User> autoLoginInfoLiveData;
+    private MutableLiveData<List<User>> autoLoginInfoLiveData;
 
     @Inject
     public UserRepository userRepository;
@@ -39,7 +41,7 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
-    public MutableLiveData<User> getAutoLoginInfoLiveData() {
+    public MutableLiveData<List<User>> getAutoLoginInfoLiveData() {
         return autoLoginInfoLiveData;
     }
 
@@ -133,8 +135,8 @@ public class UserViewModel extends AndroidViewModel {
         autoLoginInfoLiveData.setValue(null);
     }
 
-    private void onLoadAutoLoginInfoFetched(User user) {
-        autoLoginInfoLiveData.setValue(user);
+    private void onLoadAutoLoginInfoFetched(List<User> userList) {
+        autoLoginInfoLiveData.setValue(userList);
     }
 
 

@@ -27,8 +27,8 @@ public interface UserDao {
     @Query("SELECT * FROM UserTable")
     Single<List<User>> getUserList();
 
-    @Query("SELECT * FROM UserTable WHERE autologin = 1 LIMIT 1")
-    Flowable<User> getAutoLoginInfo();
+    @Query("SELECT * FROM UserTable WHERE autologin = 1")
+    Flowable<List<User>> getAutoLoginInfo();
 
     @Query("SELECT * FROM UserTable WHERE email = :email AND password = :password LIMIT 1")
     Single<User> findUserByEmailAndPassword(String email, String password);

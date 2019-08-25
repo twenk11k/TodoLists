@@ -34,6 +34,9 @@ import com.twenk11k.todolists.ui.activity.base.BaseActivity;
 import com.twenk11k.todolists.ui.fragment.enter.FragmentTodoList;
 import com.twenk11k.todolists.ui.viewmodel.UserViewModel;
 import com.twenk11k.todolists.utils.Utils;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 
@@ -103,8 +106,9 @@ public class EnterActivity extends BaseActivity {
 
     }
 
-    private void handleAutoLoginInfo(User user) {
-        if (user != null) {
+    private void handleAutoLoginInfo(List<User> userList) {
+        if (userList != null) {
+            User user = userList.get(userList.size()-1);
             userName = user.getName();
             userSurname = user.getSurname();
             userEmail = user.getEmail();

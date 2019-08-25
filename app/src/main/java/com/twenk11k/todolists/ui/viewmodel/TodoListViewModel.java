@@ -37,7 +37,7 @@ public class TodoListViewModel extends AndroidViewModel {
     public UserRepository userRepository;
 
     private CompositeDisposable compositeDisposable;
-    private MutableLiveData<User> autoLoginInfoLiveData;
+    private MutableLiveData<List<User>> autoLoginInfoLiveData;
     private MutableLiveData<List<TodoItem>> todoItemLiveData;
 
     @Inject
@@ -50,7 +50,7 @@ public class TodoListViewModel extends AndroidViewModel {
 
     }
 
-    public MutableLiveData<User> getAutoLoginInfoLiveData() {
+    public MutableLiveData<List<User>> getAutoLoginInfoLiveData() {
         return autoLoginInfoLiveData;
     }
 
@@ -177,8 +177,8 @@ public class TodoListViewModel extends AndroidViewModel {
 
     }
 
-    private void onLoadAutoLoginInfoFetched(User user) {
-        autoLoginInfoLiveData.setValue(user);
+    private void onLoadAutoLoginInfoFetched(List<User> userList) {
+        autoLoginInfoLiveData.setValue(userList);
     }
 
 

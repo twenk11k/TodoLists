@@ -48,7 +48,6 @@ public class FragmentLogin extends Fragment implements Injectable {
     private UserViewModel userViewModel;
     private EditText editTextEmail,editTextPassword;
     private boolean isApproved = true;
-    private int onChangedCalled = 0;
     private Context context;
     private Disposable disposable;
 
@@ -109,9 +108,8 @@ public class FragmentLogin extends Fragment implements Injectable {
 
 
     private void onLoginButtonClick() {
-        isApproved = true;
-        onChangedCalled = 0;
 
+        isApproved = true;
         String strEmail = binding.emailEditText.getText().toString().trim();
         String strPassword = binding.passwordEditText.getText().toString().trim();
 
@@ -159,6 +157,7 @@ public class FragmentLogin extends Fragment implements Injectable {
         }
     }
     private void handleUser(User user){
+
         if(user != null){
             userViewModel.updateAutoLogin(user.getId(),1);
             openEnterActivity(user);

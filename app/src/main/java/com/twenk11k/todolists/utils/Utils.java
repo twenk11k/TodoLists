@@ -3,10 +3,8 @@ package com.twenk11k.todolists.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class UserDbInsertTest {
+public class UserDbInsertDeleteTest {
 
     private UserDao userDao;
     private UserDb userDb;
@@ -39,11 +39,11 @@ public class UserDbInsertTest {
 
         User user = new User();
         user.setEmail("samplemail@email.com");
-        user.setName("Sample Name");
-        user.setSurname("Sample Surname");
-        user.setPassword("password");
+        user.setName("S_Name");
+        user.setSurname("S_Surname");
+        user.setPassword("s_password");
         userDao.insertTest(user);
-        User byEmail = userDao.findUserByEmailTest("samplemail@email.com");
+        User byEmail = userDao.findUserByEmailTest("sample@sample.com");
         assertThat(byEmail.getEmail(),equalTo(user.getEmail()));
 
     }
@@ -52,7 +52,7 @@ public class UserDbInsertTest {
     @Test
     public void deleteUserTest() throws Exception{
 
-        String email = "samplemail@email.com";
+        String email = "sample@sample.com";
         User byEmail = userDao.findUserByEmailTest(email);
         assertThat(byEmail.getEmail(),equalTo(email));
 

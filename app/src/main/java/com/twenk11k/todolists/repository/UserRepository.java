@@ -25,7 +25,7 @@ public class UserRepository {
         return userDao.getUserList();
     }
 
-    public Flowable<User> getAutoLoginInfo() {
+    public Flowable<List<User>> getAutoLoginInfo() {
         return userDao.getAutoLoginInfo();
     }
 

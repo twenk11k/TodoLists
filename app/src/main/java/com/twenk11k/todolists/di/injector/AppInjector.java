@@ -13,10 +13,6 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class AppInjector {
 
-    private AppInjector() {
-
-    }
-
     public static void init(App app) {
         app.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override

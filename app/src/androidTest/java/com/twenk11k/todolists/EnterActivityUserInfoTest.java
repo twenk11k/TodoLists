@@ -44,7 +44,9 @@ public class EnterActivityUserInfoTest {
                 .perform(DrawerActions.open());
 
         onView(withId(R.id.userNameAndSurname)).check(matches(not(withText("null null")))).check(matches(not(withText(""))));
+
         onView(withId(R.id.userEmail)).check(matches(not(withText(""))));
+
         Thread.sleep(2000);
 
     }

@@ -131,9 +131,9 @@ public class FragmentTodoList extends Fragment implements OnToDoListAdapterClick
         return binding.getRoot();
     }
 
-    private void handleAutoLoginInfo(User user) {
-        if (user != null) {
-            userEmail = user.getEmail();
+    private void handleAutoLoginInfo(List<User> userList) {
+        if (userList != null) {
+            userEmail = userList.get(userList.size()-1).getEmail();
             if (!userEmail.isEmpty()) {
                 bringTodoLists();
             }
