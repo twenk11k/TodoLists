@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.twenk11k.todolists.R;
+import com.twenk11k.todolists.common.EmailValidator;
 import com.twenk11k.todolists.databinding.FragmentLoginBinding;
 import com.twenk11k.todolists.di.injector.Injectable;
 import com.twenk11k.todolists.roomdb.user.User;
@@ -119,10 +120,7 @@ public class FragmentLogin extends Fragment implements Injectable {
             isApproved = false;
             editTextEmail.setError(context.getString(R.string.error_email));
         } else {
-            if(!strEmail.contains("@")){
-                isApproved = false;
-                editTextEmail.setError(context.getString(R.string.error_correct_email));
-            } else if(!strEmail.substring(strEmail.indexOf("@")).contains(".")){
+            if(!EmailValidator.isEmailValid(strEmail)) {
                 isApproved = false;
                 editTextEmail.setError(context.getString(R.string.error_correct_email));
             }

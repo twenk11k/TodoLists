@@ -57,6 +57,7 @@ public class ToDoListAndItemTests {
 
     @Test
     public void TestCreateToDoListThenDeleteList() throws InterruptedException {
+
         onView(withId(R.id.fabList)).perform(click());
         onView(withId(R.id.editTextName)).perform(click(),replaceText("Liste 1"),closeSoftKeyboard());
         onView(withId(R.id.btnCreate)).perform(click());
@@ -64,7 +65,7 @@ public class ToDoListAndItemTests {
         onView(withId(R.id.imageDeleteList)).perform(click());
         onView(withId(R.id.btnYes)).perform(click());
         onView(withId(R.id.relativeList)).check(matches(not(isDisplayed())));
-        Thread.sleep(2000);
+        Thread.sleep(15000);
 
     }
 

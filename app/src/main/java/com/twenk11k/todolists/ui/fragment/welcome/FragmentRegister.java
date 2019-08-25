@@ -136,6 +136,7 @@ public class FragmentRegister extends Fragment implements Injectable {
             editTextPassword.setError(context.getString(R.string.error_password));
         }
         if (isApproved) {
+
             data.setName(strName);
             data.setSurname(strSurname);
             data.setEmail(strEmail);
@@ -145,9 +146,6 @@ public class FragmentRegister extends Fragment implements Injectable {
             userViewModel.checkIfUserExist(data);
             userViewModel.getUserLiveData().observe(this, this::handleUser);
 
-
-        } else {
-            Toast.makeText(context.getApplicationContext(), "Not approved", Toast.LENGTH_SHORT).show();
         }
     }
 

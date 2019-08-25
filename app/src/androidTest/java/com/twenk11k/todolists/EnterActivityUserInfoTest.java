@@ -40,8 +40,8 @@ public class EnterActivityUserInfoTest {
     public void userInfoTest() throws InterruptedException {
 
         onView(withId(R.id.drawerLayout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open());
 
         onView(withId(R.id.userNameAndSurname)).check(matches(not(withText("null null")))).check(matches(not(withText(""))));
         onView(withId(R.id.userEmail)).check(matches(not(withText(""))));

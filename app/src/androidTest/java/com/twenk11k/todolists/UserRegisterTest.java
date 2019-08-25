@@ -1,35 +1,37 @@
 package com.twenk11k.todolists;
 
+
+import android.content.Intent;
+
 import androidx.fragment.app.FragmentTransaction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
-
+import com.twenk11k.todolists.ui.activity.EnterActivity;
 import com.twenk11k.todolists.ui.activity.WelcomeActivity;
 import com.twenk11k.todolists.ui.fragment.welcome.FragmentRegister;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+
 @RunWith(AndroidJUnit4.class)
 public class UserRegisterTest {
 
     @Rule
-    public ActivityTestRule<WelcomeActivity> activityTestRule = new ActivityTestRule<>(WelcomeActivity.class);
+    public ActivityTestRule<WelcomeActivity> activityTestRule = new ActivityTestRule<>(WelcomeActivity.class,true,false);
 
 
     @Before
     public void init(){
 
-        activityTestRule.getActivity().runOnUiThread(new Runnable() {
+     activityTestRule.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 FragmentRegister fragmentRegister = startFragmentRegister();

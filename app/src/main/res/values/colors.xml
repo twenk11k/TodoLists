@@ -10,7 +10,7 @@
     <color name="colorLightGreen">#869c98</color>
     <color name="md_dark_dividers">#1FFFFFFF</color>
     <color name="color_divider">#565960</color>
-    <color name="colorCardViewDark">#44474f</color>
+    <color name="colorCoverArea">#44474f</color>
     <color name="colorLoginButton">#4d9ad4</color>
     <color name="colorDialogBackground">#3E80B4</color>
     <color name="colorLightGray">#bfbfbf</color>
