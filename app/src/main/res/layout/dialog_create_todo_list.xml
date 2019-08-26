@@ -59,7 +59,7 @@
                 android:textColor="@color/colorWhite"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:id="@+id/btnCreate"
+                android:id="@+id/btnCreateList"
                 />
         </LinearLayout>
     </RelativeLayout>

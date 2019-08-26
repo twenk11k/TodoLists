@@ -17,7 +17,7 @@ import com.twenk11k.todolists.utils.Utils;
 public class CreateToDoListDialog extends Dialog {
 
     private EditText editTextName;
-    private Button btnCreate;
+    private Button btnCreateList;
     private boolean isApproved = false;
     private OnCreateToDoListDialogClick onCreateToDoListDialogClick;
     private Context context;
@@ -38,8 +38,8 @@ public class CreateToDoListDialog extends Dialog {
 
     private void setViews() {
         editTextName = findViewById(R.id.editTextName);
-        btnCreate = findViewById(R.id.btnCreate);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
+        btnCreateList = findViewById(R.id.btnCreateList);
+        btnCreateList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onCreateButtonClick();

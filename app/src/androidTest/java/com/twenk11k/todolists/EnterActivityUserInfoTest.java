@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
 import com.twenk11k.todolists.ui.activity.EnterActivity;
+import com.twenk11k.todolists.utils.Utils;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,6 +19,8 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.twenk11k.todolists.utils.Utils.getIsAutoEnabled;
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.core.IsNot.not;
 
 
@@ -37,15 +40,23 @@ public class EnterActivityUserInfoTest {
     }
 
     @Test
-    public void userInfoTest() throws InterruptedException {
+    public void enterActivityUserInfoTest() throws InterruptedException {
+
+        boolean isAutoEnabled = getIsAutoEnabled();
+        // If auto enabled is not true then we will not attempt to check the user info.
+        assertTrue(isAutoEnabled);
 
         onView(withId(R.id.drawerLayout))
                 .check(matches(isClosed(Gravity.LEFT)))
                 .perform(DrawerActions.open());
 
-        onView(withId(R.id.userNameAndSurname)).check(matches(not(withText("null null")))).check(matches(not(withText(""))));
+        onView(withId(R.id.userNameAndSurname))
+                .check(matches(not(withText("null null"))))
+                .check(matches(not(withText(""))));
 
-        onView(withId(R.id.userEmail)).check(matches(not(withText(""))));
+        onView(withId(R.id.userEmail))
+                .check(matches(not(withText(""))));
+
 
         Thread.sleep(2000);
 

@@ -23,7 +23,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 
 @RunWith(AndroidJUnit4.class)
-public class UserLoginTest {
+public class FragmentLoginTest {
 
     private boolean wasAutoEnabled = false;
 

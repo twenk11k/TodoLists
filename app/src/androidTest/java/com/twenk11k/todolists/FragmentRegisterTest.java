@@ -21,7 +21,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 
 @RunWith(AndroidJUnit4.class)
-public class UserRegisterTest {
+public class FragmentRegisterTest {
 
     private boolean wasAutoEnabled = false;
 

@@ -49,7 +49,7 @@ public class CreateToDoItemDialog extends Dialog {
         editTextDescription = findViewById(R.id.editTextDescription);
         editTextDeadline = findViewById(R.id.editTextDeadline);
         textInputDeadline = findViewById(R.id.textInputDeadline);
-        btnCreate = findViewById(R.id.btnCreate);
+        btnCreate = findViewById(R.id.btnCreateItem);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
