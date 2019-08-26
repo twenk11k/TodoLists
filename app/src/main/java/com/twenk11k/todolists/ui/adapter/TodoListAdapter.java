@@ -73,10 +73,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                     DeleteToDoDialog deleteToDoDialog = new DeleteToDoDialog(context,toDoList.getName(), new OnDeleteToDoListDialogClick() {
                         @Override
                         public void onDeleteBtnClick() {
-                            toDoLists.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
                             onToDoListAdapterClick.onAdapterClickDelete(toDoList);
+                            toDoLists.remove(getAdapterPosition());
                         }
                     },true);
                     deleteToDoDialog.show();

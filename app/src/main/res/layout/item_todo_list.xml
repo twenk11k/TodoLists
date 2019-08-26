@@ -2,83 +2,83 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="TodoList"
             type="com.twenk11k.todolists.roomdb.todolist.TodoList" />
     </data>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_50sdp"
-    android:orientation="horizontal"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:id="@+id/relativeList"
-    >
 
-    <ImageView
-        android:id="@+id/imageToDo"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/todo"
-        android:tint="@color/colorLightGray" />
-
-    <LinearLayout
-        android:id="@+id/linearNameAndCreated"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/imageExport"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_toEndOf="@id/imageToDo"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textColor="@color/colorWhite"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textCreateDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_2sdp"
-            android:textColor="@color/colorLightGray"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-
-    <ImageView
-        android:layout_width="@dimen/_27sdp"
-        android:layout_height="@dimen/_27sdp"
-        android:id="@+id/imageDeleteList"
-        android:layout_centerVertical="true"
-        android:src="@drawable/baseline_delete_white_24"
-        android:tint="@color/colorLightGray"
+    <RelativeLayout
+        android:id="@+id/relativeList"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
         android:background="?android:attr/selectableItemBackground"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        />
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="@dimen/_27sdp"
-        android:layout_height="@dimen/_27sdp"
-        android:id="@+id/imageExport"
-        android:layout_centerVertical="true"
-        android:src="@drawable/baseline_import_export_white_24"
-        android:tint="@color/colorLightGray"
-        android:background="?android:attr/selectableItemBackground"
-        android:layout_toStartOf="@id/imageDeleteList"
-        android:layout_marginEnd="@dimen/_5sdp"
-        />
+        <ImageView
+            android:id="@+id/imageToDo"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/todo"
+            android:tint="@color/colorLightGray" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageDeleteList"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/baseline_delete_white_24"
+            android:tint="@color/colorLightGray" />
+
+
+        <ImageView
+            android:id="@+id/imageExport"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_toStartOf="@id/imageDeleteList"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/baseline_import_export_white_24"
+            android:tint="@color/colorLightGray" />
+
+        <LinearLayout
+            android:id="@+id/linearNameAndCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toStartOf="@+id/imageExport"
+            android:layout_toEndOf="@id/imageToDo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textCreateDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorLightGray"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </layout>

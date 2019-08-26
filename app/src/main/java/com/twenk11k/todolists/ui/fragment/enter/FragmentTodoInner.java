@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -24,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.common.StatusBarView;
@@ -35,12 +37,16 @@ import com.twenk11k.todolists.ui.adapter.TodoAdapter;
 import com.twenk11k.todolists.ui.dialog.CreateToDoItemDialog;
 import com.twenk11k.todolists.ui.viewmodel.TodoListViewModel;
 import com.twenk11k.todolists.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import dagger.android.support.AndroidSupportInjection;
+
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_EMAIL;
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_ID;
 import static com.twenk11k.todolists.common.Constants.EXTRA_TODO_LIST_NAME;
@@ -136,7 +142,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
 
         fab = binding.fabInner;
         toolbar = binding.toolbar;
-        recyclerView = binding.recyclerView;
+        recyclerView = binding.recyclerViewInner;
         emptyText = binding.emptyText;
         pBar = binding.pBar;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -184,6 +190,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         context = getContext();
         setHasOptionsMenu(true);
 
+
     }
 
     @Override
@@ -218,16 +225,25 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+
+        To-Do items will be sort based on whether
+        it's expired or not and non-expired ones will be on top.
+
+     */
     private void orderItemsByExpired() {
         Collections.sort(todoItems, new Comparator<TodoItem>() {
             @Override
             public int compare(TodoItem o1, TodoItem o2) {
-                return Utils.getCurrentDate().compareTo(o1.getDeadline()) + Utils.getCurrentDate().compareTo(o2.getDeadline());
+                return Utils.getCurrentDate().compareTo(o1.getDeadline()) - Utils.getCurrentDate().compareTo(o2.getDeadline());
             }
         });
         todoAdapter.notifyDataSetChanged();
     }
 
+    /*
+        To-Do items will be sort based on deadline with ascending order.
+     */
     private void orderItemsByDeadline() {
         Collections.sort(todoItems, new Comparator<TodoItem>() {
             @Override
@@ -238,6 +254,9 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         todoAdapter.notifyDataSetChanged();
     }
 
+    /*
+        To-Do items will be sort based on Name with ascending order.
+     */
     private void orderItemsByName() {
         Collections.sort(todoItems, new Comparator<TodoItem>() {
             @Override
@@ -248,6 +267,9 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         todoAdapter.notifyDataSetChanged();
     }
 
+    /*
+        To-Do items will be sort based on Create Date with ascending order.
+     */
     private void orderItemsByCreateDate() {
         Collections.sort(todoItems, new Comparator<TodoItem>() {
             @Override
@@ -258,6 +280,10 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         todoAdapter.notifyDataSetChanged();
     }
 
+    /*
+        To-Do items will be sort based on whether status's complete or not.
+        Items with status complete will be shown on the top.
+     */
     private void orderItemsByStatus() {
 
         Collections.sort(todoItems, new Comparator<TodoItem>() {

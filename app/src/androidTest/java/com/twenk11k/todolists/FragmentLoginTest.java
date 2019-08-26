@@ -52,7 +52,7 @@ public class FragmentLoginTest {
 
     private FragmentLogin startFragmentLogin() {
 
-        WelcomeActivity welcomeActivity = (WelcomeActivity) activityTestRule.getActivity();
+        WelcomeActivity welcomeActivity =  activityTestRule.getActivity();
         FragmentTransaction transaction = welcomeActivity.getSupportFragmentManager().beginTransaction();
         FragmentLogin fragmentLogin = new FragmentLogin();
         transaction.replace(R.id.fragment,fragmentLogin);

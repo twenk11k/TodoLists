@@ -48,7 +48,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         holder.binding.textName.setText(name);
         holder.binding.textDescription.setText(description);
         holder.binding.textDeadline.setText(context.getString(R.string.deadlineText).concat(deadline));
-        holder.binding.textCreateDate.setText(context.getString(R.string.created_at).concat(createDate));
+        holder.binding.textCreateDateItem.setText(context.getString(R.string.created_at).concat(createDate));
         if (checkBoxStatus == 1) {
             holder.binding.checkBoxStatus.setChecked(true);
         } else {
@@ -82,6 +82,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
                     DeleteToDoDialog deleteToDoDialog = new DeleteToDoDialog(context, todoItem.getName(), new OnDeleteToDoListDialogClick() {
                         @Override
                         public void onDeleteBtnClick() {
+
                             onToDoAdapterClick.onAdapterClickDelete(toDoItemList.get(getAdapterPosition()));
                             toDoItemList.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());

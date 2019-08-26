@@ -15,7 +15,8 @@
                 android:checkableBehavior="single">
             <item
                 android:id="@+id/menu_order_by_name"
-                android:title="@string/name"/>
+                android:title="@string/name"
+                />
             <item
                 android:id="@+id/menu_order_by_status"
                 android:title="@string/status"/>
