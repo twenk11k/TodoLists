@@ -195,18 +195,23 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
                 return true;
             case R.id.menu_order_by_name:
                 orderItemsByName();
+                item.setChecked(true);
                 break;
             case R.id.menu_order_by_status:
                 orderItemsByStatus();
+                item.setChecked(true);
                 break;
             case R.id.menu_order_by_deadline:
                 orderItemsByDeadline();
+                item.setChecked(true);
                 break;
             case R.id.menu_order_by_createdate:
                 orderItemsByCreateDate();
+                item.setChecked(true);
                 break;
             case R.id.menu_order_by_expired:
                 orderItemsByExpired();
+                item.setChecked(true);
                 break;
 
         }
