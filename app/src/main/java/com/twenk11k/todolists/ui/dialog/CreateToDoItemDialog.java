@@ -50,36 +50,15 @@ public class CreateToDoItemDialog extends Dialog {
         editTextDeadline = findViewById(R.id.editTextDeadline);
         textInputDeadline = findViewById(R.id.textInputDeadline);
         btnCreate = findViewById(R.id.btnCreateItem);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCreateButtonClick();
-            }
-        });
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-
+        btnCreate.setOnClickListener(v -> onCreateButtonClick());
+        DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
         };
-        textInputDeadline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createDatePickerDialog(date);
-            }
-        });
-        editTextDeadline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createDatePickerDialog(date);
-            }
-        });
+        textInputDeadline.setOnClickListener(v -> createDatePickerDialog(date));
+        editTextDeadline.setOnClickListener(v -> createDatePickerDialog(date));
 
     }
     private void createDatePickerDialog(DatePickerDialog.OnDateSetListener date){

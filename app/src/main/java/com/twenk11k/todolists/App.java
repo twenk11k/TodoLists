@@ -1,17 +1,16 @@
 package com.twenk11k.todolists;
 
-import android.app.Application;
 
+import android.app.Application;
 import com.twenk11k.todolists.di.component.AppComponent;
 import com.twenk11k.todolists.di.component.DaggerAppComponent;
 import com.twenk11k.todolists.di.injector.AppInjector;
 import com.twenk11k.todolists.utils.Utils;
-
 import javax.inject.Inject;
-
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
+
 
 public class App extends Application implements HasAndroidInjector {
 

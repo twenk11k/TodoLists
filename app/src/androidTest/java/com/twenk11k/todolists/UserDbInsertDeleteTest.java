@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import java.io.IOException;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
@@ -42,7 +41,9 @@ public class UserDbInsertDeleteTest {
         user.setName("S_Name");
         user.setSurname("S_Surname");
         user.setPassword("s_password");
+
         userDao.insertTest(user);
+
         User byEmail = userDao.findUserByEmailTest("sample@sample.com");
         assertThat(byEmail.getEmail(),equalTo(user.getEmail()));
 
@@ -60,7 +61,7 @@ public class UserDbInsertDeleteTest {
 
         User byEmailDelete = userDao.findUserByEmailTest(email);
         assertNull(byEmailDelete);
-    }
 
+    }
 
 }

@@ -21,9 +21,11 @@ public class StatusBarView extends View {
     public StatusBarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
     public boolean canDrawBehindStatusBar() {
         return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH);
     }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -35,13 +37,4 @@ public class StatusBarView extends View {
         }
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        if (isInEditMode()) {
-            return;
-        }
-
-    }
 }

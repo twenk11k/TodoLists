@@ -1,17 +1,16 @@
 package com.twenk11k.todolists.ui.dialog;
 
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.listener.OnExportToDoListDialogClick;
+
 
 public class ExportToDoListDialog extends Dialog {
 
@@ -41,20 +40,14 @@ public class ExportToDoListDialog extends Dialog {
         btnSaveToStorage = findViewById(R.id.btnSaveToStorage);
         textViewName.setText(listName);
 
-        btnSaveToStorage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onExportToDoListDialogClick.onSaveToStorageBtnClick();
-                dismiss();
-            }
+        btnSaveToStorage.setOnClickListener(v -> {
+            onExportToDoListDialogClick.onSaveToStorageBtnClick();
+            dismiss();
         });
 
-        btnSendViaEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onExportToDoListDialogClick.onSendViaEmailBtnClick();
-                dismiss();
-            }
+        btnSendViaEmail.setOnClickListener(v -> {
+            onExportToDoListDialogClick.onSendViaEmailBtnClick();
+            dismiss();
         });
     }
 

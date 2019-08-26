@@ -4,11 +4,9 @@ package com.twenk11k.todolists.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.listener.OnCreateToDoListDialogClick;
 import com.twenk11k.todolists.utils.Utils;
@@ -39,12 +37,7 @@ public class CreateToDoListDialog extends Dialog {
     private void setViews() {
         editTextName = findViewById(R.id.editTextName);
         btnCreateList = findViewById(R.id.btnCreateList);
-        btnCreateList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCreateButtonClick();
-            }
-        });
+        btnCreateList.setOnClickListener(v -> onCreateButtonClick());
 
     }
 

@@ -1,26 +1,19 @@
 package com.twenk11k.todolists.ui.viewmodel;
 
+
 import android.app.Application;
 import android.util.Log;
-
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
-
 import com.twenk11k.todolists.repository.TodoListRepository;
 import com.twenk11k.todolists.repository.UserRepository;
 import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import com.twenk11k.todolists.roomdb.todolist.TodoList;
 import com.twenk11k.todolists.roomdb.user.User;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

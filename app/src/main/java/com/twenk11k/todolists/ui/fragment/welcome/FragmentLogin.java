@@ -1,5 +1,6 @@
 package com.twenk11k.todolists.ui.fragment.welcome;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -20,8 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.common.EmailValidator;
 import com.twenk11k.todolists.databinding.FragmentLoginBinding;
@@ -30,15 +28,13 @@ import com.twenk11k.todolists.roomdb.user.User;
 import com.twenk11k.todolists.ui.activity.EnterActivity;
 import com.twenk11k.todolists.ui.viewmodel.UserViewModel;
 import com.twenk11k.todolists.utils.Utils;
-
 import javax.inject.Inject;
-
 import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+
 
 public class FragmentLogin extends Fragment implements Injectable {
 
@@ -97,12 +93,7 @@ public class FragmentLogin extends Fragment implements Injectable {
         loginButton = binding.btnLogin;
         editTextEmail = binding.emailEditText;
         editTextPassword = binding.passwordEditText;
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLoginButtonClick();
-            }
-        });
+        loginButton.setOnClickListener(v -> onLoginButtonClick());
 
     }
 

@@ -8,6 +8,7 @@ import java.util.List;
 public class TestUtils {
 
     public static List<TodoItem> tempTodoItems(){
+
         String letters = "fax";
         List<TodoItem> todoItemList = new ArrayList<>();
         for(int i=0; i<3; i++){
@@ -16,5 +17,7 @@ public class TestUtils {
             todoItemList.add(todoItem);
         }
         return todoItemList;
+
     }
+
 }

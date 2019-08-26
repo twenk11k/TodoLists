@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,7 +29,6 @@ import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.common.StatusBarView;
 import com.twenk11k.todolists.databinding.FragmentTodoListInnerBinding;
 import com.twenk11k.todolists.di.injector.Injectable;
-import com.twenk11k.todolists.listener.OnCreateToDoItemDialogClick;
 import com.twenk11k.todolists.listener.OnToDoAdapterClick;
 import com.twenk11k.todolists.roomdb.todolist.TodoItem;
 import com.twenk11k.todolists.ui.adapter.TodoAdapter;
@@ -161,28 +159,20 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateToDoItemDialog createTodoListDialog = new CreateToDoItemDialog(context, new OnCreateToDoItemDialogClick() {
-
-                    @Override
-                    public void onCreateBtnClick(String name, String description, String deadline, String createDate) {
-                        TodoItem data = new TodoItem();
-                        data.setName(name);
-                        data.setDescription(description);
-                        data.setDeadline(deadline);
-                        data.setCreateDate(createDate);
-                        data.setTodoListEmail(todoListEmail);
-                        data.setTodoListId(todoListId);
-                        todoListViewModel.insert(data);
-                        todoItems.add(data);
-                        todoAdapter.notifyDataSetChanged();
-                    }
-
-                });
-                createTodoListDialog.show();
-            }
+        fab.setOnClickListener(v -> {
+            CreateToDoItemDialog createTodoListDialog = new CreateToDoItemDialog(context, (name, description, deadline, createDate) -> {
+                TodoItem data = new TodoItem();
+                data.setName(name);
+                data.setDescription(description);
+                data.setDeadline(deadline);
+                data.setCreateDate(createDate);
+                data.setTodoListEmail(todoListEmail);
+                data.setTodoListId(todoListId);
+                todoListViewModel.insert(data);
+                todoItems.add(data);
+                todoAdapter.notifyDataSetChanged();
+            });
+            createTodoListDialog.show();
         });
     }
 
@@ -199,6 +189,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 getActivity().onBackPressed();
                 return true;
@@ -217,8 +208,6 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
             case R.id.menu_order_by_expired:
                 orderItemsByExpired();
                 break;
-
-
 
         }
         return super.onOptionsItemSelected(item);
@@ -298,12 +287,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
+        binding.toolbar.setNavigationOnClickListener(v -> getActivity().getSupportFragmentManager().popBackStack());
     }
 
     private void setStatusbarColor(StatusBarView statusBarView, int color) {

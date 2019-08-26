@@ -18,7 +18,5 @@ public class Constants {
     @NonNull
     public static final String EXTRA_USER_EMAIL_TODO_LIST = "extra_user_email_todo_list";
 
-    @NonNull
-    public static final String EXTRA_USER_ID_TODO_LIST = "extra_user_id_todo_list";
 
 }

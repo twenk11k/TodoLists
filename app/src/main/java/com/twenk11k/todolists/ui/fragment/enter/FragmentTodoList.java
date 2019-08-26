@@ -40,7 +40,6 @@ import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.common.StatusBarView;
 import com.twenk11k.todolists.databinding.FragmentTodoListBinding;
 import com.twenk11k.todolists.di.injector.Injectable;
-import com.twenk11k.todolists.listener.OnCreateToDoListDialogClick;
 import com.twenk11k.todolists.listener.OnToDoListAdapterClick;
 import com.twenk11k.todolists.roomdb.ExportTodoList;
 import com.twenk11k.todolists.roomdb.todolist.TodoItem;
@@ -61,7 +60,6 @@ import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.twenk11k.todolists.common.Constants.EXTRA_USER_EMAIL_TODO_LIST;
@@ -199,15 +197,12 @@ public class FragmentTodoList extends Fragment implements OnToDoListAdapterClick
         });
 
         fab.setOnClickListener(v -> {
-            CreateToDoListDialog createTodoListDialog = new CreateToDoListDialog(context, new OnCreateToDoListDialogClick() {
-                @Override
-                public void onCreateBtnClick(String name, String createDate) {
-                    TodoList data = new TodoList();
-                    data.setName(name);
-                    data.setCreateDate(createDate);
-                    data.setEmail(userEmail);
-                    todoListViewModel.insert(data);
-                }
+            CreateToDoListDialog createTodoListDialog = new CreateToDoListDialog(context, (name, createDate) -> {
+                TodoList data = new TodoList();
+                data.setName(name);
+                data.setCreateDate(createDate);
+                data.setEmail(userEmail);
+                todoListViewModel.insert(data);
             });
             createTodoListDialog.show();
         });

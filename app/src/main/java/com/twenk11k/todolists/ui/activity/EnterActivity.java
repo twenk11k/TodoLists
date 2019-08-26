@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.navigation.NavigationView;
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.databinding.ActivityEnterBinding;
@@ -34,9 +31,7 @@ import com.twenk11k.todolists.ui.activity.base.BaseActivity;
 import com.twenk11k.todolists.ui.fragment.enter.FragmentTodoList;
 import com.twenk11k.todolists.ui.viewmodel.UserViewModel;
 import com.twenk11k.todolists.utils.Utils;
-
 import java.util.List;
-
 import javax.inject.Inject;
 
 
@@ -46,7 +41,6 @@ public class EnterActivity extends BaseActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private String userName, userSurname, userEmail;
-    private int userId;
     private TextView userNameAndSurname, userEmailText;
     private NavigationViewHeaderBinding headerBinding;
     private Button btnLogout;
@@ -68,7 +62,6 @@ public class EnterActivity extends BaseActivity {
             userName = extras.getString("userName");
             userSurname = extras.getString("userSurname");
             userEmail = extras.getString("userEmail");
-            userId = extras.getInt("userId");
         } else {
             isUserInfoNull = true;
         }
@@ -87,12 +80,7 @@ public class EnterActivity extends BaseActivity {
 
         setUserInfoTextViews();
 
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWelcomeActivity(getString(R.string.logged_out));
-            }
-        });
+        btnLogout.setOnClickListener(v -> openWelcomeActivity(getString(R.string.logged_out)));
 
     }
 
@@ -112,7 +100,6 @@ public class EnterActivity extends BaseActivity {
             userName = user.getName();
             userSurname = user.getSurname();
             userEmail = user.getEmail();
-            userId = user.getId();
             setLoginInfo();
             openTodoFragment();
         } else {

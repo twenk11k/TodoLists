@@ -1,17 +1,16 @@
 package com.twenk11k.todolists.ui.dialog;
 
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
 import com.twenk11k.todolists.R;
 import com.twenk11k.todolists.listener.OnDeleteToDoListDialogClick;
+
 
 public class DeleteToDoDialog extends Dialog {
 
@@ -45,18 +44,10 @@ public class DeleteToDoDialog extends Dialog {
         btnNo = findViewById(R.id.btnNo);
         btnYes = findViewById(R.id.btnYes);
         textListName.setText(listName);
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-        btnYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDeleteToDoListDialogClick.onDeleteBtnClick();
-                dismiss();
-            }
+        btnNo.setOnClickListener(v -> dismiss());
+        btnYes.setOnClickListener(v -> {
+            onDeleteToDoListDialogClick.onDeleteBtnClick();
+            dismiss();
         });
     }
 

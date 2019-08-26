@@ -87,12 +87,7 @@ public class FragmentRegister extends Fragment implements Injectable {
         editTextSurname = binding.editTextSurname;
         editTextEmail = binding.editTextEmail;
         editTextPassword = binding.editTextPassword;
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onRegisterButtonClick();
-            }
-        });
+        btnRegister.setOnClickListener(v -> onRegisterButtonClick());
 
     }
 
