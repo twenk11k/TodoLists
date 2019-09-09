@@ -16,6 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {AndroidSupportInjectionModule.class, AppModule.class, ActivityBuildersModule.class, UserDbModule.class, TodoListDbModule.class, WelcomeFragmentModule.class})
 public interface AppComponent {
 
+
     void inject(App app);
 
     @Component.Builder
@@ -26,5 +27,6 @@ public interface AppComponent {
 
         AppComponent build();
     }
+
 
 }

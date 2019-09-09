@@ -37,7 +37,6 @@ public class WelcomeActivity extends BaseActivity {
         Intent intent = new Intent(this,EnterActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     private void setWelcomeFragment() {

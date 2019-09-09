@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -110,6 +111,7 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
     }
 
     private void bringTodoItems() {
+
         emptyText.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
         pBar.setVisibility(View.VISIBLE);
@@ -145,7 +147,6 @@ public class FragmentTodoInner extends Fragment implements OnToDoAdapterClick, I
         recyclerView = binding.recyclerViewInner;
         emptyText = binding.emptyText;
         pBar = binding.pBar;
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new DividerItemDecoration(context,
                 DividerItemDecoration.VERTICAL));

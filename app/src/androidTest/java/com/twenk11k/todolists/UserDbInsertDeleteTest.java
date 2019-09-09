@@ -37,7 +37,7 @@ public class UserDbInsertDeleteTest {
     public void insertUserTest() throws Exception {
 
         User user = new User();
-        user.setEmail("samplemail@email.com");
+        user.setEmail("sample@sample.com");
         user.setName("S_Name");
         user.setSurname("S_Surname");
         user.setPassword("s_password");

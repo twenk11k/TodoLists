@@ -17,9 +17,11 @@ public class TodoListDbModule {
     public TodoListDb provideTodoListDb(Context context){
         return TodoListDb.getDatabase(context);
     }
+
     @Provides
     @Singleton
     public TodoDao provideTodoDao(TodoListDb todoListDb){
         return todoListDb.todoListDao();
     }
+
 }

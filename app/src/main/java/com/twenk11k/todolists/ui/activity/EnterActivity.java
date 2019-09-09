@@ -67,7 +67,6 @@ public class EnterActivity extends BaseActivity {
         }
         setViews();
         openTodoFragment();
-
     }
 
     private void setViews() {
